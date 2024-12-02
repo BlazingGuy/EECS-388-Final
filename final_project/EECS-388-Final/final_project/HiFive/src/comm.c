@@ -22,28 +22,33 @@ void auto_brake(int devid)
 
         if (dist > 200)
         {
+            gpio_mode(GREEN_LED, OUTPUT);
             gpio_write(GREEN_LED, ON);
             gpio_write(BLUE_LED, OFF);
             gpio_write(RED_LED, OFF);
         }
         else if (dist > 100 && dist <= 200)
         {
+            gpio_mode(GREEN_LED, OUTPUT);
             gpio_write(GREEN_LED, ON);
             gpio_write(BLUE_LED, OFF);
+            gpio_mode(RED_LED, OUTPUT);
             gpio_write(RED_LED, ON);
         }
         else if (dist > 60 && dist <= 100)
         {
             gpio_write(GREEN_LED, OFF);
             gpio_write(BLUE_LED, OFF);
+            gpio_mode(RED_LED, OUTPUT);
             gpio_write(RED_LED, ON);
         }
         else
         {
-            delay(100);
+            gpio_mode(RED_LED, OUTPUT);
             gpio_write(RED_LED, ON);
             delay(100);
             gpio_write(RED_LED, OFF);
+            delay(100);
         }
     }
 }
